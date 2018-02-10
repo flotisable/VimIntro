@@ -1,5 +1,5 @@
 \input texinfo
-@c vim: foldmethod=marker expandtab tabstop=2 softstop=2
+@c vim: foldmethod=marker expandtab tabstop=2 softtabstop=2
 @c %**start of header
 @setfilename vimIntro
 @documentencoding UTF-8
