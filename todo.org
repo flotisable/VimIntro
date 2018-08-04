@@ -1,0 +1,26 @@
+* TODO v0.2.0
+** TODO 搜尋
+** TODO 取代
+** TODO 復原
+* TODO v0.3.0
+** TODO 深入 vim
+*** TODO 分割視窗
+*** TODO buffer, argument
+*** TODO 標籤
+*** TODO 錄製巨集
+*** TODO 折疊
+*** TODO vimrc
+*** TODO 插件
+*** TODO view, session
+*** TODO tag
+*** TODO make
+*** TODO 雜項
+    - [ ] J
+    - [ ] >>
+    - [ ] .
+    - [ ] ;
+    - [ ] *
+    - [ ] #
+    - [ ] %
+    - [ ] :!
+    - [ ] :r !
