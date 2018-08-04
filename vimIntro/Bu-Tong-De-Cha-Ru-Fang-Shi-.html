@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>不同的插入方式 (Vim 介紹 0.1.0)</title>
+
+<meta name="description" content="不同的插入方式 (Vim 介紹 0.1.0)">
+<meta name="keywords" content="不同的插入方式 (Vim 介紹 0.1.0)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Wo-Xiang-Zhi-Dao-Duo-YiDian-.html#g_t_6211_60f3_77e5_9053_591a_4e00_9ede" rel="up" title="我想知道多一點">
+<link href="Qiang-Da-De-Yun-Suan-Zi-.html#g_t_5f37_5927_7684_904b_7b97_5b50" rel="prev" title="強大的運算子">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="g_t_4e0d_540c_7684_63d2_5165_65b9_5f0f"></a>
+<div class="header">
+<p>
+Previous: <a href="Qiang-Da-De-Yun-Suan-Zi-.html#g_t_5f37_5927_7684_904b_7b97_5b50" accesskey="p" rel="prev">強大的運算子</a>, Up: <a href="Wo-Xiang-Zhi-Dao-Duo-YiDian-.html#g_t_6211_60f3_77e5_9053_591a_4e00_9ede" accesskey="u" rel="up">我想知道多一點</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="Bu-Tong-De-Cha-Ru-Fang-Shi-"></a>
+<h3 class="section">3.4 不同的插入方式</h3>
+
+<p>到目前為止，我們只知道可以用 <strong>i</strong> 來進入插入模式。
+而 vim 身為一個模式編輯器，如果只有一種進入插入模式的方法，這樣怎麼會好用呢？
+所以接下來我要多介紹幾個在 vim 進入插入模式的按鍵，學會後可以方便一些。
+首先介紹跟 <strong>i</strong> 成對的按鍵 <strong>a</strong> 。
+vim 預設的游標在普通模式中應該會是方塊狀的，也就是游標所在的文字上會有一個方格一閃一閃的。
+當進入插入模式時，則會變成一根棒子在兩個文字間閃爍。
+<strong>i</strong> 進入插入模式後游標會是在普通模式時游標所選的文字前面， <strong>a</strong> 則相反，是在文字的後面。
+亦即 <strong>i</strong> 適合將文字插到文字前，而 <strong>a</strong> 則適合將文字插在文字後。
+比如要在行尾進入插入模式可以輸入 <strong>$a</strong> ，要在一個詞的後面進入插入模式則可以用 <strong>ea</strong> 。
+要記得 <strong>a</strong> ，可以從英文下手， <strong>a</strong> 即為 append (加到後面的意思) 的縮寫。
+vim 還提供了更簡單的方式在行首及行尾進入插入模式，即 <strong>I</strong> 與 <strong>A</strong> ，這兩個按鍵分別對應到 <strong>^i</strong> 跟 <strong>$a</strong> 。
+接著介紹插入空白行的按鍵，如果不知道怎麼做的話，用前面學的可以用 <strong>I RETURN</strong> 和 <strong>A RETURN</strong> 分別向上及向下插入一空白行。
+vim 有另外的按鍵做到類似的事，即 <strong>O</strong> 和 <strong>o</strong> 。可以想成 oneline (一行) 或是 other line (另一行)。
+<strong>o</strong> 會向下插入空白行並進入插入模式，而 <strong>O</strong> 則會向上插入空白行進入插入模式。
+值得一提的是， <strong>o</strong> 和 <strong>O</strong> 也可以接受數字前綴，其意思為插入的行數，比如 <strong>2o</strong> 會向下插入兩行。
+藉由在 <strong>o</strong> 和 <strong>O</strong> 加上數字前綴進入插入模式後會有一點小小的不同，稍後再提。
+</p>
+<p>前一節才提過運算子，希望大家有看，也還記得其強大之處。
+vim 裡面有個與 <strong>d</strong> 對應的運算子來進入插入模式，即 <strong>c</strong> ，這是 change (改變) 的縮寫。
+知道 <strong>c</strong> 為運算子代表了什麼？這表示我們可以透過前面學過的多種方式來進入插入模式。
+<strong>cc</strong> 直接重寫這一行， <strong>cw</strong> 砍掉一個詞做修改， <strong>cis</strong> 修改一整句話， <strong>ggcG</strong> 整個檔案砍掉重練，&hellip;等等。
+另外前面好像沒提到 <strong>D</strong> 可以刪掉從游標到行尾的文字，而對應的 <strong>C</strong> 砍掉到行尾的文字後會進入插入模式。
+前面有講過 <strong>x</strong> 即 <strong>dl</strong> ，相對應的 <strong>s</strong> 為 <strong>cl</strong> 。
+仔細一看，這四個按鍵在 QWERTY 鍵盤上根本就擠在一起，不知道當初是不是因為這樣才將這四個按鍵功能設的相近。
+奇怪的是， <strong>X</strong> 為 <strong>dh</strong> ，而 <strong>S</strong> 卻是 <strong>cc</strong> ，不過我也沒常用這兩個按鍵，都用 <strong>BACKSPACE</strong> 跟 <strong>cc</strong> 。
+</p>
+<p>之前看到其他編輯器有所謂的列編輯，於是就來查查 vim 有沒有這種功能，結果沒想到還真的有，雖然只能做到連續的幾行做列編輯，不過還是覺得不錯用。
+vim 做到列編輯的方式就是使用前面提過，但怪怪的區塊選取 <strong>CTRL-v</strong> 。
+用 <strong>CTRL-v</strong> 選取文字後按下 <strong>I</strong> ，便可以在選取的文字前插入文字，實際使用可以發現只有最上面那行插入文字，說好的列編輯呢？
+別急，等輸入好文字之後按一下 <strong>ESC</strong> 跳回普通模式，只要隨便動一下游標，就會發現用 <strong>CTRL-v</strong> 選取的每一行都插入了同樣的文字。
+下面放個示意圖
+</p>
+<p>原文字
+</p><div class="example">
+<pre class="example">abc
+abc
+abc
+</pre></div>
+
+<p>用 <strong>CTRL-v</strong> 後 <strong>I</strong> 插入文字
+</p><div class="example">
+<pre class="example">123abc
+abc
+abc
+</pre></div>
+
+<p>離開插入模式後動一下游標
+</p><div class="example">
+<pre class="example">123abc
+123abc
+123abc
+</pre></div>
+
+<p>說到這個，我就得提一下，列編輯離開插入模式後要動一下才會更新，感覺這像是 vim 的 bug，可是又沒人去修。
+而我現在用的 neovim 則處理了這個問題，只要一離開插入模式，列編輯的結果馬上出現，感覺舒爽多了。
+所以我就跑去用 neovim 了。(雖然主要原因是內建 terminal，以及專案的目標感覺很有趣，架構應該會比 vim 好)
+</p>
+<p>離題了，除了 <strong>I</strong> 之外， <strong>A</strong> 可以插入文字到區塊選取文字的後面，而 <strong>c</strong> 則可以刪掉區塊並做編輯。
+另外就是前面提到， <strong>o</strong> 和 <strong>O</strong> 加數字前綴會有點不同，就是指列編輯。
+當 <strong>o</strong> 或 <strong>O</strong> 加數字前綴插入空白行後，可以發現其實 vim 只插了一行，而輸入文字後離開插入模式，可以發現 vim 插入的每一行都是剛才輸入的文字。
+所以只想插入空白行，比如插入兩行空白行，請用 <strong>2o ESC</strong> 。
+</p>
+
+
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>基本的移動 (Vim 介紹 0.1.0)</title>
+
+<meta name="description" content="基本的移動 (Vim 介紹 0.1.0)">
+<meta name="keywords" content="基本的移動 (Vim 介紹 0.1.0)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Zi-You-Zi-Zai-De-Yi-Dong-.html#g_t_81ea_7531_81ea_5728_7684_79fb_52d5" rel="up" title="自由自在的移動">
+<link href="Dan-Xing-Jian-De-Yi-Dong-.html#g_t_55ae_884c_9593_7684_79fb_52d5" rel="next" title="單行間的移動">
+<link href="Zi-You-Zi-Zai-De-Yi-Dong-.html#g_t_81ea_7531_81ea_5728_7684_79fb_52d5" rel="prev" title="自由自在的移動">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="g_t_57fa_672c_7684_79fb_52d5"></a>
+<div class="header">
+<p>
+Next: <a href="Dan-Xing-Jian-De-Yi-Dong-.html#g_t_55ae_884c_9593_7684_79fb_52d5" accesskey="n" rel="next">單行間的移動</a>, Up: <a href="Zi-You-Zi-Zai-De-Yi-Dong-.html#g_t_81ea_7531_81ea_5728_7684_79fb_52d5" accesskey="u" rel="up">自由自在的移動</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="Ji-Ben-De-Yi-Dong-"></a>
+<h4 class="subsection">3.1.1 基本的移動</h4>
+
+<p>一般來說，我們是使用上下左右鍵來移動游標，而 vim 為了讓手指移動的距離減少，使用了四個英文字母來做游標的移動，分別是 <strong>h</strong>, <strong>j</strong>, <strong>k</strong>, <strong>l</strong> 。
+一開始看到這四個英文字母可能會覺得這也太難記吧，但是如果把它對應到鍵盤上(這裡指的是我們常用的QWERTY鍵盤)，可以發現這四個英文字母就在英文字母的右半邊，並且連成一條線，適合右手的四指來按。
+而記法也蠻簡單的， <strong>h</strong> 在最左邊是向左移動， <strong>l</strong> 在最右邊是向右移動，而 <strong>j</strong> 有個勾勾向下是向下移動，剩餘的 <strong>k</strong> 就只能是向上了。
+知道了基本的記法後，只要常常使用身體就會自然而然的記下來了。
+</p>
+<p>vim 的這種移動方式在沒有上下左右鍵或是像筆電鍵盤較小的情況下非常適用。
+用一用之後真的會有種回不去的感覺。
+不過對於較大有數字鍵的鍵盤，可能需要將鍵盤橋一下才好用，不然用久了右手手腕會不太舒服(還是這是我個人的問題)。
+<strong>h</strong>, <strong>j</strong>, <strong>k</strong>, <strong>l</strong> ，一次只會移動一格，這樣子有時候要移動很久游標才會到自己想要的位置。
+這時候可以在按鍵前加上數字作為前綴，它會讓移動重複前綴數字的次數，像是 <strong>10j</strong> 就會向下移動十格。
+我個人是覺得這比較適合配合其他按鍵的時候使用，不過在不同行之間移動的時候也是不錯用啦。
+值得一提的是，vim 的普通模式下許多按鍵加上數字 n 作為前綴有著重複此按鍵 n 次的意思在，這也是讓 vim 按鍵強大的地方之一。
+</p>
+
+
+
+</body>
+</html>
