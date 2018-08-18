@@ -3,6 +3,7 @@
 #+AUTHOR: Flotisable
 #+LATEX_HEADER: \usepackage{CJKutf8}
 #+LATEX_HEADER: \usepackage[OT1]{fontenc}
+#+LATEX_HEADER: \hypersetup{unicode}
 #+LATEX_HEADER: \AtBeginDocument{ \begin{CJK}{UTF8}{bkai} }
 #+LATEX_HEADER: \AtEndDocument{ \clearpage \end{CJK} }
 
