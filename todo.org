@@ -1,3 +1,4 @@
+#+STARTUP: logdone
 * TODO v0.2.0
 ** TODO 搜尋
 ** TODO 取代

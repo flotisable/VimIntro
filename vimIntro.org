@@ -4,7 +4,7 @@
 #+LATEX_HEADER: \usepackage{CJKutf8}
 #+LATEX_HEADER: \usepackage[OT1]{fontenc}
 #+LATEX_HEADER: \AtBeginDocument{ \begin{CJK}{UTF8}{bkai} }
-#+LATEX_HEADER: \AtEndDocument{ \end{CJK} }
+#+LATEX_HEADER: \AtEndDocument{ \clearpage \end{CJK} }
 
 #+LATEX: \newpage
 Vim 是一個純文字編輯器，是從過去在 Unix 上流行的文字編輯器 Vi 所衍生出來的，其代表的意義是 Vi IMproved，也就是改良版的 Vi。
@@ -364,3 +364,12 @@ Vim 除了高速的編輯與跨平台的優點之外，它也是個小而快的�
    另外就是前面提到， *o* 和 *O* 加數字前綴會有點不同，就是指列編輯。
    當 *o* 或 *O* 加數字前綴插入空白行後，可以發現其實 vim 只插了一行，而輸入文字後離開插入模式，可以發現 vim 插入的每一行都是剛才輸入的文字。
    所以只想插入空白行，比如插入兩行空白行，請用 *2o ESC* 。
+** 讓我們時光倒流
+   到現在講了不少 vim 的編輯方式，但是人有失手，馬有亂蹄，總是難免會有編輯錯誤而想要取消編輯的結果。
+   在 vim 中當然也提供了這項功能，即為按鍵 *u* ，這是 undo( 復原 )的意思。
+   *u* 會取消上一次的編輯，而如果取消後發現這個編輯是對的，那又要怎麼復原呢？
+   答案是 *CTRL-r* ，r 是 redo( 重做 ) 的縮寫。
+   至於為啥要加個 CTRL 修飾鍵，跟複製不是 c 而是 y 一樣，是因為 r 這個按鍵已經有其他用途，之後會提到。
+   基本的修復編輯的方式就這樣，vim 還提供一些其他的修復方式。
+   像是 *U* 會將所在的那一行整個復原，而 *:undo* 是 *u* 在命令模式的名稱。
+   但是這些我自己平常也不太用到，如果想到深入了解，請 *:help undo-redo* 來看 vim 文檔的相關說明。
