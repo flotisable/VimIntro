@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>讓我們時光倒流 (Vim 介紹 0.1.0)</title>
+
+<meta name="description" content="讓我們時光倒流 (Vim 介紹 0.1.0)">
+<meta name="keywords" content="讓我們時光倒流 (Vim 介紹 0.1.0)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Wo-Xiang-Zhi-Dao-Duo-YiDian-.html#g_t_6211_60f3_77e5_9053_591a_4e00_9ede" rel="up" title="我想知道多一點">
+<link href="Bu-Tong-De-Cha-Ru-Fang-Shi-.html#g_t_4e0d_540c_7684_63d2_5165_65b9_5f0f" rel="prev" title="不同的插入方式">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="g_t_8b93_6211_5011_6642_5149_5012_6d41"></a>
+<div class="header">
+<p>
+Previous: <a href="Bu-Tong-De-Cha-Ru-Fang-Shi-.html#g_t_4e0d_540c_7684_63d2_5165_65b9_5f0f" accesskey="p" rel="prev">不同的插入方式</a>, Up: <a href="Wo-Xiang-Zhi-Dao-Duo-YiDian-.html#g_t_6211_60f3_77e5_9053_591a_4e00_9ede" accesskey="u" rel="up">我想知道多一點</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="Rang-Wo-Men-Shi-Guang-Dao-Liu-"></a>
+<h3 class="section">3.5 讓我們時光倒流</h3>
+
+<p>到現在講了不少 vim 的編輯方式，但是人有失手，馬有亂蹄，總是難免會有編輯錯誤而想要取消編輯的結果。
+在 vim 中當然也提供了這項功能，即為按鍵 <strong>u</strong> ，這是 undo( 復原 )的意思。
+<strong>u</strong> 會取消上一次的編輯，而如果取消後發現這個編輯是對的，那又要怎麼復原呢？
+答案是 <strong>CTRL-r</strong> ，r 是 redo( 重做 ) 的縮寫。
+至於為啥要加個 CTRL 修飾鍵，跟複製不是 c 而是 y 一樣，是因為 r 這個按鍵已經有其他用途，之後會提到。
+基本的修復編輯的方式就這樣，vim 還提供一些其他的修復方式。
+像是 <strong>U</strong> 會將所在的那一行整個復原，而 <strong>:undo</strong> 是 <strong>u</strong> 在命令模式的名稱。
+但是這些我自己平常也不太用到，如果想到深入了解，請 <strong>:help undo-redo</strong> 來看 vim 文檔的相關說明。
+</p>
+
+
+
+</body>
+</html>
