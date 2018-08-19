@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>subpattern 與其他 (Vim 介紹 0.1.0)</title>
+
+<meta name="description" content="subpattern 與其他 (Vim 介紹 0.1.0)">
+<meta name="keywords" content="subpattern 與其他 (Vim 介紹 0.1.0)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Shi-Yong-Zheng-Gui-Biao-ShiShi-.html#g_t_4f7f_7528_6b63_898f_8868_793a_5f0f" rel="up" title="使用正規表示式">
+<link href="Zi-Yuan-Ji-He-.html#g_t_5b57_5143_96c6_5408" rel="prev" title="字元集合">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="subpattern-_8207_5176_4ed6"></a>
+<div class="header">
+<p>
+Previous: <a href="Zi-Yuan-Ji-He-.html#g_t_5b57_5143_96c6_5408" accesskey="p" rel="prev">字元集合</a>, Up: <a href="Shi-Yong-Zheng-Gui-Biao-ShiShi-.html#g_t_4f7f_7528_6b63_898f_8868_793a_5f0f" accesskey="u" rel="up">使用正規表示式</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="subpattern-Yu-Qi-Ta-"></a>
+<h4 class="subsubsection">3.6.2.5 subpattern 與其他</h4>
+
+<p>藉著講一下 subpattern，subpattern 基本上就是一般的正規表示式，只是被 &lsquo;<samp>\(</samp>&rsquo;, &lsquo;<samp>\)</samp>&rsquo; 包起來。
+而整個 subpattern 可以視為一個單元，並對它做出現次數的描述。
+比如要找 ababab，就可以寫成 &lsquo;<samp>\(ab\)\{3}</samp>&rsquo; ，可以做出更細微的描述。
+subpattern 除了用來做更細部的描述外，還有個功能是用在 back reference (沒有好的翻譯法)，後面講到取代時會再說明。
+</p>
+<p>最後來講講幾個好用的特殊符號，這些符號是用來描述匹配要從哪裡開始，並不會真的有匹配的字元，又被稱為 anchor。
+首先是用來匹配行首的 &lsquo;<samp>^</samp>&rsquo; 與行尾的 &lsquo;<samp>$</samp>&rsquo; ，有沒有覺得很熟悉，前面也有提過，一般模式下移動游標到行首與行尾的按鍵就是這兩個。
+另外就是用來匹配字邊緣的 &lsquo;<samp>\&lt;</samp>&rsquo; 與 &lsquo;<samp>\&gt;</samp>&rsquo; ，這主要是用來更精確地找一個字，這兩個符號只會匹配到空白字元與一般的字之間。
+可能舉個例比較清楚，假設有個文件內容如下
+</p>
+<div class="example">
+<pre class="example">This is a demonstration of search with regular expression.
+I want to show how to use \&lt; and \&gt;.
+</pre></div>
+
+<p>如果我們想找 is，直接打 &lsquo;<samp>/is</samp>&rsquo; 的話，This 的 is 跟 is 都可以是合法的匹配結果。
+同樣的如果想找 how，打 &lsquo;<samp>/how</samp>&rsquo; ，show 的 how 跟 how 也都是合法的匹配結果。
+這時就可以使用 &lsquo;<samp>\&lt;</samp>&rsquo; 與 &lsquo;<samp>\&gt;</samp>&rsquo; 。
+&lsquo;<samp>/\&lt;is\&gt;</samp>&rsquo; 只會匹配到 is 而不會匹配到 This 的 is，因為 This 的 is 並沒有被空白字元所包起來。
+同理 &lsquo;<samp>/\&lt;how\&gt;</samp>&rsquo; 只會匹配到 how 而不會匹配到 show 的 how。
+</p>
+<p>這裡做個小補充，如果一個符號在正規表示式有特殊意義的話，都可以用 \ 跳脫字元來取消其特殊意義。
+一個超特殊的符號 &lsquo;<samp>.</samp>&rsquo; 代表可以匹配到任意字元。
+還有就是幾個無法用一般符號表示的字元，像是 &lsquo;<samp>\t</samp>&rsquo; 代表 TAB， &lsquo;<samp>\n</samp>&rsquo; 代表換行符號。 
+</p>
+<p>最後的最後舉幾個實際的例子來體會一下正規表示式的使用
+</p><ul>
+<li> 手機號碼: &lsquo;<samp>09\d\{8}</samp>&rsquo;
+</li><li> C++ 變數名稱: &lsquo;<samp>[_a-zA-Z]\w*</samp>&rsquo;
+</li><li> * nix 系統檔案絕對路徑: &lsquo;<samp>/\([^/]\+/\)*\([^/]\+\)\=</samp>&rsquo;
+</li><li> gmail 信箱: &lsquo;<samp>\w\+@gmail\.com</samp>&rsquo;
+</li><li> github 倉庫: &lsquo;<samp>https://github\.com/\w\+/\w\+\.git</samp>&rsquo;
+</li></ul>
+
+
+<p>希望是沒有打錯啦。
+</p>
+
+
+
+</body>
+</html>

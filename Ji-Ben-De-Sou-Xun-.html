@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>基本的搜尋 (Vim 介紹 0.1.0)</title>
+
+<meta name="description" content="基本的搜尋 (Vim 介紹 0.1.0)">
+<meta name="keywords" content="基本的搜尋 (Vim 介紹 0.1.0)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Da-Hai-Li-Lao-Xiao-Yin-Zhen-.html#g_t_5927_6d77_88e1_6488_5c0f_9280_91dd" rel="up" title="大海裡撈小銀針">
+<link href="Shi-Yong-Zheng-Gui-Biao-ShiShi-.html#g_t_4f7f_7528_6b63_898f_8868_793a_5f0f" rel="next" title="使用正規表示式">
+<link href="Da-Hai-Li-Lao-Xiao-Yin-Zhen-.html#g_t_5927_6d77_88e1_6488_5c0f_9280_91dd" rel="prev" title="大海裡撈小銀針">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="g_t_57fa_672c_7684_641c_5c0b"></a>
+<div class="header">
+<p>
+Next: <a href="Shi-Yong-Zheng-Gui-Biao-ShiShi-.html#g_t_4f7f_7528_6b63_898f_8868_793a_5f0f" accesskey="n" rel="next">使用正規表示式</a>, Up: <a href="Da-Hai-Li-Lao-Xiao-Yin-Zhen-.html#g_t_5927_6d77_88e1_6488_5c0f_9280_91dd" accesskey="u" rel="up">大海裡撈小銀針</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="Ji-Ben-De-Sou-Xun-"></a>
+<h4 class="subsection">3.6.1 基本的搜尋</h4>
+
+<p>vim 提供兩個按鍵來做搜尋，分別是 <strong>/</strong> 與 <strong>?</strong> ，只差在要不要按 SHIFT。
+而這兩個搜尋方式的差別在於， <strong>/</strong> 會是正向搜尋，也就是會往文件尾端做搜尋。
+<strong>?</strong> 則相反，會往文件開頭做反向搜尋。
+使用方式很簡單，當按下 <strong>/</strong> 後，會像按 <strong>:</strong> 一樣進入命令模式，並在螢幕最下方一行讓我們輸入文字。
+不同的是，用 <strong>/</strong> 進入命令模式輸入的文字是我們要搜尋的樣式( pattern )( 不知道有沒有更好的中文翻譯 )。
+比如說我們想要找 vim 這個字在哪裡出現，只要輸入 <strong>/vim</strong> 後按下 ENTER 鍵，游標就會跳到那個字上面。
+如果找不到的話也會顯示錯誤訊息。
+</p>
+<p>通常找東西很難一次就找到，如果每次都要打 <strong>/vim</strong> 來找下一個 vim 在哪也太累了。
+vim 想當然的會提供一些按鍵來快速地重複搜尋同一個 pattern。
+使用 <strong>n</strong> ( next 下一個 ) 可以繼續找下一個符合的 pattern，而 <strong>N</strong> 則是反向的找上一個符合的 pattern。
+要注意的是在用 <strong>/</strong> 做正向搜尋時， <strong>n</strong> 也會做正向搜尋，而 <strong>N</strong> 則會做反向搜尋。
+相反的，在用 <strong>?</strong> 做反向搜尋時， <strong>n</strong> 會做反向搜尋，而 <strong>N</strong> 會做正向搜尋。
+有時候 <strong>/</strong> 和 <strong>?</strong> 混用時可能會搞混。
+總之，不管在哪個情況下， <strong>n</strong> 就是找下一個，而 <strong>N</strong> 是找上一個。
+</p>
+<p>vim 還有個方式來搜尋現在游標所在的文字上。
+比如同樣要找 vim，可以先將游標移到 vim 上，然後按下 <strong>*</strong> ，這跟 <strong>/vim</strong> 的效果是一樣的。
+也就是說 <strong>*</strong> 會以游標所在的字作為 pattern 做正向搜尋。
+另外反向搜尋的話可以用 <strong>#</strong> 。
+</p>
+<p>再來講幾個搜尋時好用的設定，第一個是 <strong>:set hlsearch</strong> ，這可以讓被搜尋的 pattern 被 highlight，比較容易觀察。
+如果看的不開心，可以用 <strong>:set nohlsearch</strong> 來永久取消 highlight，或是用 <strong>:nohlsearch</strong> ( 簡寫 <strong>:noh</strong> ) 來暫時取消 highlight。
+另外一個是 <strong>:set incsearch</strong> ，和原本輸入完 pattern 按 ENTER 才做搜尋不同，它會在我們輸入 pattern 的同時做搜尋。
+這樣的一個好處是我們可以看現在的 pattern 會搜尋到什麼，這在寫比較複雜的正規表示式時可以確保沒有寫錯。
+</p>
+<p>那麼簡單的搜尋介紹就到這邊，接下來會講講 vim 的正規表示式。
+</p>
+
+
+
+</body>
+</html>

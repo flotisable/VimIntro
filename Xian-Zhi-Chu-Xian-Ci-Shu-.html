@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>限制出現次數 (Vim 介紹 0.1.0)</title>
+
+<meta name="description" content="限制出現次數 (Vim 介紹 0.1.0)">
+<meta name="keywords" content="限制出現次數 (Vim 介紹 0.1.0)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Shi-Yong-Zheng-Gui-Biao-ShiShi-.html#g_t_4f7f_7528_6b63_898f_8868_793a_5f0f" rel="up" title="使用正規表示式">
+<link href="Pi-Pei-Duo-Zhong--pattern.html#g_t_5339_914d_591a_7a2e-pattern" rel="next" title="匹配多種 pattern">
+<link href="Zheng-Gui-Biao-ShiShi-Dao-Du-.html#g_t_6b63_898f_8868_793a_5f0f_5c0e_8b80" rel="prev" title="正規表示式導讀">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="g_t_9650_5236_51fa_73fe_6b21_6578"></a>
+<div class="header">
+<p>
+Next: <a href="Pi-Pei-Duo-Zhong--pattern.html#g_t_5339_914d_591a_7a2e-pattern" accesskey="n" rel="next">匹配多種 pattern</a>, Previous: <a href="Zheng-Gui-Biao-ShiShi-Dao-Du-.html#g_t_6b63_898f_8868_793a_5f0f_5c0e_8b80" accesskey="p" rel="prev">正規表示式導讀</a>, Up: <a href="Shi-Yong-Zheng-Gui-Biao-ShiShi-.html#g_t_4f7f_7528_6b63_898f_8868_793a_5f0f" accesskey="u" rel="up">使用正規表示式</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="Xian-Zhi-Chu-Xian-Ci-Shu-"></a>
+<h4 class="subsubsection">3.6.2.2 限制出現次數</h4>
+
+<p>再來進入第一個特殊的語法，這是用在描述一個字元可以出現多少次的語法。
+</p>
+<ul>
+<li> &lsquo;<samp>\=</samp>&rsquo; 代表出現 0 或 1 次 <br>
+比如 &lsquo;<samp>ab\=</samp>&rsquo; 匹配到 a, ab
+</li><li> &lsquo;<samp>\+</samp>&rsquo; 代表至少一次 <br>
+比如 &lsquo;<samp>ab\+</samp>&rsquo; 匹配到 ab, abb, abbb, &hellip;
+</li><li> &lsquo;<samp>*</samp>&rsquo; 代表出現任意多次 <br>
+比如 &lsquo;<samp>ab*</samp>&rsquo; 匹配到 a, ab, abb, abbb, &hellip;
+</li></ul>
+
+<p>上面三個符號可以簡單地對一個匹配單元出現幾次做描述，在這些例子中一個匹配單元是一個字元。
+這三個符號會盡量匹配到出現次數越多的，也就是說對於文件中的 abbb， &lsquo;<samp>ab*</samp>&rsquo; 會匹配到 abbb，而不是 a, ab, abb。 
+如果要對出現次數做更精確的描述可以用 &lsquo;<samp>\{n,m}</samp>&rsquo; 的語法。
+n 和 m 都是正整數，這代表出現 n 至 m 次。
+比如 &lsquo;<samp>ab\{1,2}</samp>&rsquo; 會匹配到 ab, abb。
+如果讓 n 或 m 空著，則代表沒有上限或下限。
+比如 &lsquo;<samp>ab\{1,}</samp>&rsquo; 會匹配到 ab, abb, abbb, &hellip;，也就是 &lsquo;<samp>ab\+</samp>&rsquo; 。
+而 &lsquo;<samp>ab\{,1}</samp>&rsquo; 會匹配到 a, ab，也就是 &lsquo;<samp>ab\=</samp>&rsquo; 。
+值得一提的是如果只想讓一個匹配單元出現 n 次，不用寫成 &lsquo;<samp>\{n,n}</samp>&rsquo; ，只要寫 &lsquo;<samp>\{n}</samp>&rsquo; 即可。
+比如 &lsquo;<samp>ab\{2}</samp>&rsquo; 會匹配到 abb。
+上面這些語法都會盡量匹配到出現越多次的，如果想到匹配到出現較少次的，只要在下限前加個 - 即可。
+比如對文件中的 abbb， &lsquo;<samp>ab\{-1,2}</samp>&rsquo; 會匹配到 ab 而 &lsquo;<samp>ab\{1,2}</samp>&rsquo; 會匹配到 abb。
+</p>
+
+
+
+</body>
+</html>

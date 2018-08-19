@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>正規表示式導讀 (Vim 介紹 0.1.0)</title>
+
+<meta name="description" content="正規表示式導讀 (Vim 介紹 0.1.0)">
+<meta name="keywords" content="正規表示式導讀 (Vim 介紹 0.1.0)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Shi-Yong-Zheng-Gui-Biao-ShiShi-.html#g_t_4f7f_7528_6b63_898f_8868_793a_5f0f" rel="up" title="使用正規表示式">
+<link href="Xian-Zhi-Chu-Xian-Ci-Shu-.html#g_t_9650_5236_51fa_73fe_6b21_6578" rel="next" title="限制出現次數">
+<link href="Shi-Yong-Zheng-Gui-Biao-ShiShi-.html#g_t_4f7f_7528_6b63_898f_8868_793a_5f0f" rel="prev" title="使用正規表示式">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="g_t_6b63_898f_8868_793a_5f0f_5c0e_8b80"></a>
+<div class="header">
+<p>
+Next: <a href="Xian-Zhi-Chu-Xian-Ci-Shu-.html#g_t_9650_5236_51fa_73fe_6b21_6578" accesskey="n" rel="next">限制出現次數</a>, Up: <a href="Shi-Yong-Zheng-Gui-Biao-ShiShi-.html#g_t_4f7f_7528_6b63_898f_8868_793a_5f0f" accesskey="u" rel="up">使用正規表示式</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="Zheng-Gui-Biao-ShiShi-Dao-Du-"></a>
+<h4 class="subsubsection">3.6.2.1 正規表示式導讀</h4>
+
+<p>先來對正規表示式稍做個介紹，這個概念出自『計算理論』( Theory of Computation )這個電腦科學的一個分支。
+計算理論是在探討什麼東西是可以被計算的，並用自動機( Automaton ) 與語言 ( Language ) 作為模型來描述這些計算。
+原本的正規表示式出自可以被有限自動機( Finite Automata ) 接受的語言正規語言 ( Regular Language )。
+不過如果只用計算理論定義的正規語言，那在寫正規表示式時會很難寫，所以一般軟體上的正規表示式都多了許多的擴充。
+而正規表示式一般可以用非確定性有限自動機( Nondeterministic Finite Automata, NFA ) 來實作。
+值得一提的是，正規表示式，其意義是符合一定規則的表示式，而規則是人定的，因此不同軟體接受的正規表示式是不同的。
+但大多軟體上的正規表示式語法相近，因此學會一種通常稍作修正就可以套用到另一種上面。
+很好，簡單的介紹結束，希望能讓看的人稍微了解一下正規表示式是基於什麼理論產生的，不過我學得沒很好，所以沒辦法說太多。
+有興趣的人可以從計算理論下手，不過我想網路上應該也蠻多直接對正規表示式的介紹，不用從這麼底層學。
+</p>
+<p>總之正規表示式有其理論根本，而它的好處是可以用比較簡潔的方式描述不同的文字，適合用在搜尋與剖析文字。
+接下來就開始正式進入正規表示式的語法介紹，由於正規表示式很複雜，我也只懂簡單的一些用法( 雖然通常也夠用 )，因此只講我會的。
+首先最基本的就是，一般的英文, 數字跟符號代表原本的意思，會匹配( match )到原本的字元。
+比如 &lsquo;<samp>a</samp>&rsquo; 會匹配到 a。
+而串起來的字元代表著它會依序做匹配。
+比如 &lsquo;<samp>ab</samp>&rsquo; 會匹配到 ab 而不是 ba。
+這基本的語法跟我們對一個字詞的認知是一樣的，所以就算不懂正規表示式的語法也可以做正常的搜尋。
+</p>
+
+
+
+</body>
+</html>

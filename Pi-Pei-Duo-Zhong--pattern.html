@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>匹配多種 pattern (Vim 介紹 0.1.0)</title>
+
+<meta name="description" content="匹配多種 pattern (Vim 介紹 0.1.0)">
+<meta name="keywords" content="匹配多種 pattern (Vim 介紹 0.1.0)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Shi-Yong-Zheng-Gui-Biao-ShiShi-.html#g_t_4f7f_7528_6b63_898f_8868_793a_5f0f" rel="up" title="使用正規表示式">
+<link href="Zi-Yuan-Ji-He-.html#g_t_5b57_5143_96c6_5408" rel="next" title="字元集合">
+<link href="Xian-Zhi-Chu-Xian-Ci-Shu-.html#g_t_9650_5236_51fa_73fe_6b21_6578" rel="prev" title="限制出現次數">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="g_t_5339_914d_591a_7a2e-pattern"></a>
+<div class="header">
+<p>
+Next: <a href="Zi-Yuan-Ji-He-.html#g_t_5b57_5143_96c6_5408" accesskey="n" rel="next">字元集合</a>, Previous: <a href="Xian-Zhi-Chu-Xian-Ci-Shu-.html#g_t_9650_5236_51fa_73fe_6b21_6578" accesskey="p" rel="prev">限制出現次數</a>, Up: <a href="Shi-Yong-Zheng-Gui-Biao-ShiShi-.html#g_t_4f7f_7528_6b63_898f_8868_793a_5f0f" accesskey="u" rel="up">使用正規表示式</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="Pi-Pei-Duo-Zhong--pattern"></a>
+<h4 class="subsubsection">3.6.2.3 匹配多種 pattern</h4>
+
+<p>講完了對於出現次數的描述，接著提一下如果想同時可以匹配不同的 pattern 要怎麼做。
+這個時候需要一個特殊符號 &lsquo;<samp>\|</samp>&rsquo; 。
+比如我們想同時可以找 ab, cd，可以寫成 &lsquo;<samp>ab\|cd</samp>&rsquo; 。
+也就是說 &lsquo;<samp>\|</samp>&rsquo; 會將整個 pattern 切成兩半，前半和後半都是可以被匹配的正規表示式。
+所以如果很閒，可以用 ⟨ pattern ⟩ &lsquo;<samp>\|</samp>&rsquo; ⟨ pattern ⟩ &lsquo;<samp>\|</samp>&rsquo; ⟨ pattern ⟩ &lsquo;<samp>\|</samp>&rsquo;&hellip;，將所有想匹配的 pattern 一次寫滿。
+如果不想整個正規表示式被切成兩半，而是只切一部份呢？
+比如我們想找 ab, ac，雖然可以用 &lsquo;<samp>ab\|</samp>&rsquo; 作為 pattern，但如果 a 被代換成一個很長的字串比如說 abcdefghijk，這樣就要打很長。
+這有兩種解決方式
+</p>
+<ol>
+<li> 用 &lsquo;<samp>[]</samp>&rsquo; 語法 <br>
+&lsquo;<samp>[]</samp>&rsquo; 裡面描述了可以接受字元集合，而一個 &lsquo;<samp>[]</samp>&rsquo; 只會匹配到一個字元。
+比如上面的例子，我們可以寫成 &lsquo;<samp>a[bc]</samp>&rsquo; 。
+</li><li> 用子樣式( subpattern ) <br>
+一個被 &lsquo;<samp>\(</samp>&rsquo; 和 &lsquo;<samp>\)</samp>&rsquo; 所包起來的 pattern 會被 group 起來( 不知道怎麼翻比較好 )，被稱為 subpattern。
+上面的例子用 subpattern 可以寫成 &lsquo;<samp>a\(b\|c\)</samp>&rsquo; 。
+</li></ol>
+
+<p>可以看見，用 &lsquo;<samp>[]</samp>&rsquo; 來描述字元集合在這個例子是比較適合的， subpattern 是用來描述更複雜的情況。
+比如要找 abc, ade，就無法用 &lsquo;<samp>[]</samp>&rsquo; 來寫，而是要用 subpattern 或是單純的用 &lsquo;<samp>\|</samp>&rsquo; 。
+</p>
+
+
+
+</body>
+</html>
