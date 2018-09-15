@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- Created by GNU Texinfo 6.5, http://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>方便修改的取代 (Vim 介紹 0.1.0)</title>
+
+<meta name="description" content="方便修改的取代 (Vim 介紹 0.1.0)">
+<meta name="keywords" content="方便修改的取代 (Vim 介紹 0.1.0)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<link href="index.html#Top" rel="start" title="Top">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Wo-Xiang-Zhi-Dao-Duo-YiDian-.html#g_t_6211_60f3_77e5_9053_591a_4e00_9ede" rel="up" title="我想知道多一點">
+<link href="Xiao-Jie-.html#g_t_5c0f_7d50" rel="next" title="小結">
+<link href="subpattern-Yu-Qi-Ta-.html#subpattern-_8207_5176_4ed6" rel="prev" title="subpattern 與其他">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.indentedblock {margin-right: 0em}
+blockquote.smallindentedblock {margin-right: 0em; font-size: smaller}
+blockquote.smallquotation {font-size: smaller}
+div.display {margin-left: 3.2em}
+div.example {margin-left: 3.2em}
+div.lisp {margin-left: 3.2em}
+div.smalldisplay {margin-left: 3.2em}
+div.smallexample {margin-left: 3.2em}
+div.smalllisp {margin-left: 3.2em}
+kbd {font-style: oblique}
+pre.display {font-family: inherit}
+pre.format {font-family: inherit}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: inherit; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: inherit; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.nolinebreak {white-space: nowrap}
+span.roman {font-family: initial; font-weight: normal}
+span.sansserif {font-family: sans-serif; font-weight: normal}
+ul.no-bullet {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<a name="g_t_65b9_4fbf_4fee_6539_7684_53d6_4ee3"></a>
+<div class="header">
+<p>
+Next: <a href="Xiao-Jie-.html#g_t_5c0f_7d50" accesskey="n" rel="next">小結</a>, Previous: <a href="Da-Hai-Li-Lao-Xiao-Yin-Zhen-.html#g_t_5927_6d77_88e1_6488_5c0f_9280_91dd" accesskey="p" rel="prev">大海裡撈小銀針</a>, Up: <a href="Wo-Xiang-Zhi-Dao-Duo-YiDian-.html#g_t_6211_60f3_77e5_9053_591a_4e00_9ede" accesskey="u" rel="up">我想知道多一點</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+<hr>
+<a name="Fang-Bian-Xiu-Gai-De-Qu-Dai-"></a>
+<h3 class="section">3.7 方便修改的取代</h3>
+
+<p>我們常常在寫程式或是文件時打錯字，或是想要修改一些名詞。
+這時候要進入插入模式再一一修改很不方便。
+而取代在這時會是個不錯的選擇。
+</p>
+<p>首先，最簡單的取代方式是使用按鍵 <strong>r</strong> ，這是 replace( 取代 ) 的意思。
+只要將游標移到想要修改的字元上，按下 <strong>r</strong> + 想改成的字元即可。
+比如說我們想將 tne 的 n 改成 h，先將游標移到 n 上，然後按下 <strong>r h</strong> ，這樣 tne 就會變成 the 了。
+配合 visual 模式，可以將所選的文字都變成同一個字元( 雖然這不太有用就是了 )。
+另外 vim 也提供了一個模式專門用來取代文字。
+按下 <strong>R</strong> 便可以進入取代模式，直接輸入文字會將游標的字取代成輸入的字。
+基本上就是個不用刪除文字作修改的插入模式。
+另外，在插入模式與取代模式按下 <strong>INSERT</strong> 可以在這兩個模式間作切換。
+</p>
+<p>再來講一個稍微強大一點的取代方式，使用 substitute (取代)命令。
+痾，關於 replace 跟 substitute 這兩個英文的差別我不是很清楚。
+總之在 vim 中，我們可以用 substitute 做比較複雜的取代。
+它的格式是長成這樣子： &lsquo;<samp>:[range]substitue/&lt;pattern&gt;/&lt;replace string&gt;/[flag]</samp>&rsquo; 。
+看起來很複雜嗎，我們來慢慢講解。
+range (範圍) 跟 flag (標籤) 可以先不用管，那是稍微進階的功能。
+所以最基本的格式看成這樣就好了： &lsquo;<samp>:substitute/&lt;pattern&gt;/&lt;replace string&gt;/</samp>&rsquo; 。
+⟨ pattern ⟩ 就是要被取代的文字，可以用正規表示式來描述，這也讓取代變得很強大。
+⟨ replace string ⟩ 是要換成的文字。
+比如說，像剛剛講的要將 tne 改成 the，可以輸入 &lsquo;<samp>:substitute/tne/the/</samp>&rsquo; ，然後按下 <strong>ENTER</strong> 。
+覺得輸入 substitute 太長了？可以用縮寫 &lsquo;<samp>:s/tne/the/</samp>&rsquo; 。
+</p>
+<p>在前面介紹正規表示式時，我們有講到 subpattern 的 back reference，這就可以被用在取代上。
+利用 &lsquo;<samp>\&lt;number&gt;</samp>&rsquo; ，我們可以描述使用第幾個 subpattern。
+比如說原本 pattern 長這樣： &lsquo;<samp>abcdefabc</samp>&rsquo; ，可以利用 subpattern 改成 &lsquo;<samp>\(abc\)def\1</samp>&rsquo; 。
+可以比較簡潔的描述。
+這在取代時還蠻方便的，有時候我們想取代特定的字，需要用前綴與後綴來限制被取代的字，但這些前綴與後綴又會被取代掉。
+比如我們想將 prefix 改成 postfix，而文件裡有 preference 這個字，這是時候就不能直接打 &lsquo;<samp>:s/pre/post/</samp>&rsquo; 。
+不然 preference 有可能就變成 postference 了。
+利用後綴與 subpattern，我們可以更精確地做取代： &lsquo;<samp>:s/pre\(fix\)/post\1/</samp>&rsquo; 。
+如果想要使用 subpattern 但不想被用在 backreference，可以用 &lsquo;<samp>\%(</samp>&rsquo; , &lsquo;<samp>\)</samp>&rsquo; 來包住 subpattern。
+比如我們想將 abcabcde 改成 code，但文件裡有 cde，所以需要用後綴與 backreference。
+一個寫法是 &lsquo;<samp>:s/\(abc\)\{2}\(de\)/co\2/</samp>&rsquo; ，另一個寫法是 &lsquo;<samp>:s/\%(abc\)\{2}\(de)/co\1/</samp>&rsquo; 。
+第二種寫法可以區分要或不要用在 back reference 的 subpattern，如果寫的正規表示式比較複雜時會比較容易用。
+雖說這個情況本身就不太會遇到就是了。
+</p>
+<p>在預設的情況下，substitute 只會取代游標所在那行第一個符合 pattern 的文字。
+所以如果要將 pre pre 改成 post post，用 &lsquo;<samp>:s/pre/post/</samp>&rsquo; 我們只能得到 post pre。
+這時候就需要用 range 與 flag 了。
+首先講 flag，我只講我會的兩個，其他還請自行 <strong>:help s_flags</strong> 。
+第一格是最常用的 g flag，我是以 global (全域) 來記它的。
+這就是上面例子的解答，使用 g flag，vim 會取代該行所有符合 pattern 的文字。
+所以 &lsquo;<samp>:s/pre/post/g</samp>&rsquo; 就可以將 pre pre 改成 post post 了。
+另一個我覺得不錯用的是 n flag，這是 number (次數) 的意思。
+它不會取代文字，而是會顯示找到的 pattern 有幾個，這讓我們可以計算文件中 pattern 出現的次數。
+想我之前還用這個方式來算課程作業中 clause 跟 literal 有幾個呢。
+離題了，這兩個就是我所知的 substitute flag，基本上也算夠用了。
+</p>
+<p>接著講講 range，range 的概念也可以用在其他命令上，只要有支援。
+這有點像運算子，只要學一次，就可以套用到很多地方。
+題外話，每個運算子都有對應的命令，方便用來寫 script。
+如果沒寫 range，預設是游標所在那行，也可以顯式的寫 &lsquo;<samp>.</samp>&rsquo; ，這是游標所在那行的意思。
+range 的格式就像 &lsquo;<samp>\{n,m\}</samp>&rsquo; 一樣，用 &lsquo;<samp>,</samp>&rsquo; 來取分起始。
+所以我們可以用 &lsquo;<samp>:1,5s/pre/post/g</samp>&rsquo; 來將 1 到 5 行所有出現的 pre 改成 post。
+特殊符號 &lsquo;<samp>$</samp>&rsquo; 表示最後一行，所以 &lsquo;<samp>:1,$s/pre/post/g</samp>&rsquo; 表示將整個文件的 pre 改成 post。
+也可以用簡寫 &lsquo;<samp>%</samp>&rsquo; 來表示 &lsquo;<samp>1,$</samp>&rsquo; 。
+另外可以用相對行號，比如 &lsquo;<samp>:.-1,.+5s/pre/post/g</samp>&rsquo; 表示將前一行到下五行內的所有 pre 改成 post。
+比較常用的應該還是 &lsquo;<samp>%</samp>&rsquo; ，其他就看個人喜好了。
+配合 visual 模式，可以只取代所選的範圍內的字。
+在選取文字後按下按下 <strong>:</strong> 進入命令模式，螢幕最下方會顯示 &lsquo;<samp>:'&lt;.'&gt;</samp>&rsquo; 。
+&lsquo;<samp>'&lt;</samp>&rsquo;, &lsquo;<samp>'&gt;</samp>&rsquo; 表示被選取的兩端。
+</p>
+<p>關於取代大約就這樣，還請各位自行玩玩看，找出自己喜歡的取代方式。
+</p>
+<hr>
+<div class="header">
+<p>
+Next: <a href="Xiao-Jie-.html#g_t_5c0f_7d50" accesskey="n" rel="next">小結</a>, Previous: <a href="Da-Hai-Li-Lao-Xiao-Yin-Zhen-.html#g_t_5927_6d77_88e1_6488_5c0f_9280_91dd" accesskey="p" rel="prev">大海裡撈小銀針</a>, Up: <a href="Wo-Xiang-Zhi-Dao-Duo-YiDian-.html#g_t_6211_60f3_77e5_9053_591a_4e00_9ede" accesskey="u" rel="up">我想知道多一點</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>]</p>
+</div>
+
+
+
+</body>
+</html>

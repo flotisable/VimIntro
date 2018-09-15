@@ -13,6 +13,7 @@
 <link href="index.html#Top" rel="start" title="Top">
 <link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
 <link href="Shi-Yong-Zheng-Gui-Biao-ShiShi-.html#g_t_4f7f_7528_6b63_898f_8868_793a_5f0f" rel="up" title="使用正規表示式">
+<link href="Fang-Bian-Xiu-Gai-De-Qu-Dai-.html#g_t_65b9_4fbf_4fee_6539_7684_53d6_4ee3" rel="next" title="方便修改的取代">
 <link href="Zi-Yuan-Ji-He-.html#g_t_5b57_5143_96c6_5408" rel="prev" title="字元集合">
 <style type="text/css">
 <!--
@@ -55,7 +56,7 @@ Previous: <a href="Zi-Yuan-Ji-He-.html#g_t_5b57_5143_96c6_5408" accesskey="p" re
 <a name="subpattern-Yu-Qi-Ta-"></a>
 <h4 class="subsubsection">3.6.2.5 subpattern 與其他</h4>
 
-<p>藉著講一下 subpattern，subpattern 基本上就是一般的正規表示式，只是被 &lsquo;<samp>\(</samp>&rsquo;, &lsquo;<samp>\)</samp>&rsquo; 包起來。
+<p>接著講一下 subpattern，subpattern 基本上就是一般的正規表示式，只是被 &lsquo;<samp>\(</samp>&rsquo;, &lsquo;<samp>\)</samp>&rsquo; 包起來。
 而整個 subpattern 可以視為一個單元，並對它做出現次數的描述。
 比如要找 ababab，就可以寫成 &lsquo;<samp>\(ab\)\{3}</samp>&rsquo; ，可以做出更細微的描述。
 subpattern 除了用來做更細部的描述外，還有個功能是用在 back reference (沒有好的翻譯法)，後面講到取代時會再說明。
@@ -78,7 +79,7 @@ I want to show how to use \&lt; and \&gt;.
 </p>
 <p>這裡做個小補充，如果一個符號在正規表示式有特殊意義的話，都可以用 \ 跳脫字元來取消其特殊意義。
 一個超特殊的符號 &lsquo;<samp>.</samp>&rsquo; 代表可以匹配到任意字元。
-還有就是幾個無法用一般符號表示的字元，像是 &lsquo;<samp>\t</samp>&rsquo; 代表 TAB， &lsquo;<samp>\n</samp>&rsquo; 代表換行符號。 
+還有就是幾個無法用一般符號表示的字元，像是 &lsquo;<samp>\t</samp>&rsquo; 代表 TAB， &lsquo;<samp>\n</samp>&rsquo; 代表換行符號。
 </p>
 <p>最後的最後舉幾個實際的例子來體會一下正規表示式的使用
 </p><ul>
