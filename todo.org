@@ -2,7 +2,8 @@
 * TODO v0.2.0
 ** DONE 搜尋
    CLOSED: [2018-08-19 日 19:46]
-** TODO 取代
+** DONE 取代
+   CLOSED: [2018-09-15 六 11:43]
 ** DONE 復原
    CLOSED: [2018-08-18 六 19:41]
 * TODO v0.3.0
